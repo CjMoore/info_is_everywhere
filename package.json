@@ -1,0 +1,29 @@
+{
+  "name": "info_is_everywhere",
+  "version": "1.0.0",
+  "description": "info is everywhere",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/CjMoore/info_is_everywhere.git"
+  },
+  "author": "Charlotte Moore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CjMoore/info_is_everywhere/issues"
+  },
+  "homepage": "https://github.com/CjMoore/info_is_everywhere#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0"
+  }
+}

@@ -3,22 +3,40 @@ const app = express()
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 var watson = require('watson-developer-cloud');
+var path = require('path');
 
 require('dotenv').config({path: 'watson.env'})
 
 app.set('port', process.env.PORT || 3000)
+app.set('view engine', 'pug')
 
 app.use(logger('dev'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.locals.title = 'Watson Test'
+app.locals.title = 'Info is Everywhere'
 
 app.get('/', (request, response) => {
-  response.send(app.locals.title);
+  response.render('index', {title: app.locals.title});
 });
 
-app.get('/api/v1/tone_data', toneData )
+app.get('/tone-data', toneData)
+
+app.post('/tone-data', (request, response) => {
+  var text = request.body.text
+
+  if (!text) {
+  return response.status(422).send({
+    error: 'No input property provided'
+  })
+} else {
+  app.locals.text = text
+  response.redirect('/tone-data')
+  }});
+
+
+// app.get('/api/v1/tone_data', toneData )
 
 
 if (!module.parent) {
@@ -35,11 +53,23 @@ var tone_analyzer = watson.tone_analyzer({
 });
 
 function toneData(request, response, next){
-    tone_analyzer.tone({ text: "If I can stop one heart from breaking, I shall not live in vain; If I can ease one life from aching, or cool one pain, Or help one fainting robin unto his nest again, I shall not live in vain"},
+    tone_analyzer.tone({ text: app.locals.text},
                     function(err, tone){
                       if(err)
-                        console.log(err);
+                        console.log(err.message);
                       else
-                        response.send(JSON.stringify(tone, 3, 2));
+                        var returnData = (tone);
+
+                        var categories = returnData.document_tone.tone_categories
+
+                        var emotional_data = returnData.document_tone.tone_categories[0]
+                        var language_data = returnData.document_tone.tone_categories[1]
+                        var social_data = returnData.document_tone.tone_categories[2]
+
+                        response.render('data_show',{ emotional_data: emotional_data,
+                                                      language_data: language_data,
+                                                      social_data: social_data,
+                                                      input_text: app.locals.text})
+                        console.log(JSON.stringify(returnData, null, 4))
                     });
                   }

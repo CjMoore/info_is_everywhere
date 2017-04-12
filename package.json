@@ -21,7 +21,8 @@
     "body-parser": "^1.17.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
-    "morgan": "^1.8.1"
+    "morgan": "^1.8.1",
+    "pug": "^2.0.0-beta11"
   },
   "devDependencies": {
     "chai": "^3.5.0",

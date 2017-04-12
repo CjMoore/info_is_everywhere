@@ -1,0 +1,26 @@
+html
+  head
+    title= title
+  body
+    h1= title
+    p=input_text
+    ul
+      li=emotional_data.category_name
+        ul
+          <li>#{emotional_data.tones[0].tone_name}: #{emotional_data.tones[0].score}</li>
+          <li>#{emotional_data.tones[1].tone_name}: #{emotional_data.tones[1].score}</li>
+          <li>#{emotional_data.tones[2].tone_name}: #{emotional_data.tones[2].score}</li>
+          <li>#{emotional_data.tones[3].tone_name}: #{emotional_data.tones[3].score}</li>
+          <li>#{emotional_data.tones[4].tone_name}: #{emotional_data.tones[4].score}</li>
+      li=language_data.category_name
+        ul
+          <li>#{language_data.tones[0].tone_name}: #{language_data.tones[0].score}</li>
+          <li>#{language_data.tones[1].tone_name}: #{language_data.tones[1].score}</li>
+          <li>#{language_data.tones[2].tone_name}: #{language_data.tones[2].score}</li>
+      li=social_data.category_name
+        ul
+          <li>#{social_data.tones[0].tone_name}: #{social_data.tones[0].score}</li>
+          <li>#{social_data.tones[1].tone_name}: #{social_data.tones[1].score}</li>
+          <li>#{social_data.tones[2].tone_name}: #{social_data.tones[2].score}</li>
+          <li>#{social_data.tones[3].tone_name}: #{social_data.tones[3].score}</li>
+          <li>#{social_data.tones[4].tone_name}: #{social_data.tones[4].score}</li>

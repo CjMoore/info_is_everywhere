@@ -1,9 +1,11 @@
 html
   head
     title= title
+    link(rel='stylesheet', href='/stylesheets/main.scss')
   body
-    h1= title
-    <form method="post" action="/tone-data">
-      <input type="textarea" name="text">
-      <input type="submit">
-    </form>
+    div(class="container")
+      h1= title
+      <form method="post" action="/tone-data">
+        textarea( name="text" class="main-input")
+        <input type="submit">
+      </form>
